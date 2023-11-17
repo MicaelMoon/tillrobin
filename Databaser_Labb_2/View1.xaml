@@ -7,55 +7,6 @@
         mc:Ignorable="d"
         Title="View1" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
-
-        <ComboBox Grid.Column="1"
-                  Grid.Row="1"
-                  Width="150" Height="20"/>
-
-        <ListBox Grid.Column="1"
-                 Grid.Row="2"
-                 Grid.RowSpan="8"
-                 Width="150" Height="260" 
-                 x:Name="PlayListListBox"/>
-
-        <ListBox Grid.Column="2"
-                 Grid.Row="2"
-                 Grid.RowSpan="8"
-                 Width="150" Height="260" 
-                 x:Name="TrackListBox"/>
-
-        <TextBox Grid.Column="3"
-                 Grid.Row="1"
-                 Grid.ColumnSpan="2"
-                 Grid.RowSpan="3"
-                 Width="200" Height="20"/>
-
         <Button Grid.Column="3"
                 Grid.Row="5"
                 Grid.ColumnSpan="2"

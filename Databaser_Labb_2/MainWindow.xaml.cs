@@ -32,14 +32,14 @@ namespace Databaser_Labb_2
 			LoadData();
 		}
 
-		private async void LoadData()
+		private void LoadData()
 		{
-			//Laddar in allla playlists
+			//Laddar in alla playlists
 
-			var playlists = await _dbContext.Playlists.ToListAsync();
+			var playlists = _dbContext.Playlists.ToList();
+
 			PlayListListBox.ItemsSource = playlists;
-
-			currentPlaylist = PlayListListBox.SelectedItem as Playlist;
+			
 
 			//var tracks = _dbcontext.PlaylistTracks.FirstOrDefault(p => p.PlaylistId == currentPlaylist.PlaylistId);
 			//TrackListBox.ItemsSource = tracks;
@@ -48,23 +48,47 @@ namespace Databaser_Labb_2
 			//VIll nu skriva ut alla tracks som är bunden till current playlist
 
 			//Söker igenom alla PlaylistTracks
-			foreach(var t in _dbContext.PlaylistTracks)
+			try
 			{
-				if(t.PlaylistId == currentPlaylist.PlaylistId)
+
+			}
+			catch
+			{
+
+			}
+
+			if (currentPlaylist != null)
+			{
+				//Goes through all the PLaylistTracks
+				//Vad för låtar har du i denna spellistan
+				foreach (var p in _dbContext.PlaylistTracks.ToList())
 				{
-					//Found a matching playlistTrack that is in playlist
-					var k = _dbContext.Playlists.FirstOrDefault(p => p.PlaylistId == t.PlaylistId);
-					TrackListBox.ItemsSource = k.Name;
+					//if it finds a track that has a matching PlaylistId of your currentPlaylist
+					//Den här låten finns i din spellista
+					if (p.PlaylistId == currentPlaylist.PlaylistId)
+					{
+						//Found a matching playlistTrack that is in playlist
+						//Add the track to the listBox of Tracks
+						
+						var k = _dbContext.Tracks.FirstOrDefault(t => t.TrackId == p.TrackId);
+						TrackListBox.Items.Add(k);
+					}
 				}
 			}
 		}
 
+		private void PlayListListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			TrackListBox.Items.Clear();
+			ListBox listBox = sender as ListBox;
+
+			currentPlaylist = listBox.SelectedItem as Playlist;
+			LoadData();
+		}
+
 		private void CreatePlaylistBtn_Click(object sender, RoutedEventArgs e)
 		{
-			View1 newview = new View1();
-
-			this.Content = newview;
-			var newPlaylist = new Playlist();
+			LoadData();
 		}
 	}
 }
