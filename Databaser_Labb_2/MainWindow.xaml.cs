@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using Databaser_Labb_2.Data;
 using Databaser_Labb_2.Models;
 using Microsoft.EntityFrameworkCore;
+using Databaser_Labb_2.Views;
+using Databaser_Labb_2.MyWindows;
 
 namespace Databaser_Labb_2
 {
@@ -23,8 +25,14 @@ namespace Databaser_Labb_2
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public Playlist? currentPlaylist;
+		public TrackChosen trackChosen = new TrackChosen();
+
 		private Labb2DBContext _dbContext;
+
+		public Window1 window = new Window1();
+
+		public Playlist? currentPlaylist;
+
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -48,14 +56,6 @@ namespace Databaser_Labb_2
 			//VIll nu skriva ut alla tracks som är bunden till current playlist
 
 			//Söker igenom alla PlaylistTracks
-			try
-			{
-
-			}
-			catch
-			{
-
-			}
 
 			if (currentPlaylist != null)
 			{
@@ -79,16 +79,53 @@ namespace Databaser_Labb_2
 
 		private void PlayListListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			trackChosen.DeleteTrackBtn.Visibility = Visibility.Collapsed;
+
 			TrackListBox.Items.Clear();
+
+			trackChosen.DeleteTrackBtn.Visibility = Visibility.Collapsed; //I am repeating this line of code because I dont know for the life of my why it doesnt work properly unless I have them both here.
+			
 			ListBox listBox = sender as ListBox;
 
+
 			currentPlaylist = listBox.SelectedItem as Playlist;
+
 			LoadData();
+		}
+
+		private void TrackListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			trackChosen = new TrackChosen();
+
+			Grid.SetColumn(trackChosen, 3);
+			Grid.SetRow(trackChosen, 6);
+
+			this.MainGrid.Children.Add(trackChosen);
+
+			Grid.SetColumn(trackChosen.DeleteTrackBtn, 3);
+			Grid.SetRow(trackChosen.DeleteTrackBtn, 6);
+
+			Grid.SetColumn(trackChosen.TestTrackBtn, 3);
+			Grid.SetRow(trackChosen.TestTrackBtn, 5);
+
 		}
 
 		private void CreatePlaylistBtn_Click(object sender, RoutedEventArgs e)
 		{
+			NewView view = new NewView();
+			//window.Content = view;
+
+			Grid.SetRow(view, 5);
+			Grid.SetColumn(view, 4);
+
+			this.MainGrid.Children.Add(view);
+
 			LoadData();
+		}
+
+		private void DeletePlaylistBtn_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

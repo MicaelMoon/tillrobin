@@ -51,6 +51,7 @@
                  Grid.RowSpan="8"
                  Width="150" Height="260" 
                  x:Name="TrackListBox"
+                  SelectionChanged="TrackListBox_SelectionChanged"
                  DisplayMemberPath="Name"/>
 
         <TextBox Grid.Column="3"
@@ -62,9 +63,19 @@
         <Button Grid.Column="3"
                 Grid.Row="5"
                 Grid.ColumnSpan="2"
-                Width="200" Height="100"
+                Width="130" Height="50"
                 Content="Create Playlist"
+                FontSize="15"
                 x:Name="CreatePlaylistBtn" Click="CreatePlaylistBtn_Click"
                 />
+        <Button Grid.Column="3"
+                Grid.Row="6"
+                Grid.ColumnSpan="2"
+                Width="130" Height="50"
+                Content="Delete Playlist"
+                FontSize="15"
+                x:Name="DeletePlaylistBtn" Click="DeletePlaylistBtn_Click"
+        />
+        <Frame x:Name="mainFrame"/>
     </Grid>
 </Window>

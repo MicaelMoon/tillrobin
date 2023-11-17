@@ -12,21 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Databaser_Labb_2
+namespace Databaser_Labb_2.MyWindows
 {
     /// <summary>
-    /// Interaction logic for View1.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class View1 : Window
+    public partial class Window1 : Window
     {
-        public View1()
+        public Window1()
         {
             InitializeComponent();
-        }
-
-		private void DeletePlaylistBtn_Click(object sender, RoutedEventArgs e)
-		{
-
         }
     }
 }
