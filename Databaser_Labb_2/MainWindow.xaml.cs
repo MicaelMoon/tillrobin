@@ -17,6 +17,7 @@ using Databaser_Labb_2.Models;
 using Microsoft.EntityFrameworkCore;
 using Databaser_Labb_2.Views;
 using Databaser_Labb_2.MyWindows;
+using Menu = Databaser_Labb_2.Models.Menu;
 
 namespace Databaser_Labb_2
 {
@@ -25,7 +26,9 @@ namespace Databaser_Labb_2
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public TrackChosen trackChosen = new TrackChosen();
+		public TrackChosen trackChosen;
+
+		public Track currentTrack = null;
 
 		private Labb2DBContext _dbContext;
 
@@ -79,12 +82,16 @@ namespace Databaser_Labb_2
 
 		private void PlayListListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			trackChosen.DeleteTrackBtn.Visibility = Visibility.Collapsed;
+			if (trackChosen != null)
+			{
+				trackChosen.DeleteTrackBtn.Visibility = Visibility.Collapsed;
 
-			TrackListBox.Items.Clear();
+				TrackListBox.Items.Clear();
 
-			trackChosen.DeleteTrackBtn.Visibility = Visibility.Collapsed; //I am repeating this line of code because I dont know for the life of my why it doesnt work properly unless I have them both here.
-			
+				trackChosen.DeleteTrackBtn.Visibility = Visibility.Collapsed;//I am repeating this line of code because I dont know for the life of my why it doesnt work properly unless I have them both here.
+			}
+
+
 			ListBox listBox = sender as ListBox;
 
 
@@ -95,37 +102,36 @@ namespace Databaser_Labb_2
 
 		private void TrackListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			trackChosen = new TrackChosen();
+			ListBox listBox = sender as ListBox;
 
+			currentTrack = listBox.SelectedItem as Track;
+
+			if (trackChosen == null)
+			{
+				trackChosen = new TrackChosen(); // Fel. Clear
+				this.MainGrid.Children.Add(trackChosen);
+			}
+			else
+			{
+				trackChosen.DeleteTrackBtn.Visibility = Visibility.Visible;
+			}
+			
 			Grid.SetColumn(trackChosen, 3);
 			Grid.SetRow(trackChosen, 6);
-
-			this.MainGrid.Children.Add(trackChosen);
-
-			Grid.SetColumn(trackChosen.DeleteTrackBtn, 3);
-			Grid.SetRow(trackChosen.DeleteTrackBtn, 6);
-
-			Grid.SetColumn(trackChosen.TestTrackBtn, 3);
-			Grid.SetRow(trackChosen.TestTrackBtn, 5);
-
 		}
 
 		private void CreatePlaylistBtn_Click(object sender, RoutedEventArgs e)
 		{
-			NewView view = new NewView();
-			//window.Content = view;
-
-			Grid.SetRow(view, 5);
-			Grid.SetColumn(view, 4);
-
-			this.MainGrid.Children.Add(view);
+			Menu.CreatePlaylist();
 
 			LoadData();
 		}
 
 		private void DeletePlaylistBtn_Click(object sender, RoutedEventArgs e)
 		{
+			var trackToDelete = _dbContext.Tracks.FirstOrDefault(t => t.TrackId == currentTrack.TrackId);
 
+			_dbContext.Tracks.Remove(trackToDelete);
 		}
 	}
 }

@@ -15,19 +15,14 @@ using System.Windows.Shapes;
 
 namespace Databaser_Labb_2.Views
 {
-    /// <summary>
-    /// Interaction logic for TrackChosen.xaml
-    /// </summary>
-    public partial class TrackChosen : UserControl
-    {
-        public TrackChosen()
-        {
-            InitializeComponent();
-        }
-
-		private void DeleteTrackBtn_Click(object sender, RoutedEventArgs e)
+	/// <summary>
+	/// Interaction logic for CreatePlaylist.xaml
+	/// </summary>
+	public partial class CreatePlaylist : UserControl
+	{
+		public CreatePlaylist()
 		{
-
-        }
-    }
+			InitializeComponent();
+		}
+	}
 }
