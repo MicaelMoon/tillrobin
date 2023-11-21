@@ -10,7 +10,7 @@
         <Button
             Grid.ColumnSpan="2"
             Width="130" Height="50"
-            Margin="24, 0, 0, 0"
+            Margin="0, 0, 0, 0"
             Content="Delete Track"
             FontSize="15"
             x:Name="DeleteTrackBtn" Click="DeleteTrackBtn_Click"

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Databaser_Labb_2.Models;
 
 namespace Databaser_Labb_2.Views
 {
@@ -23,6 +24,19 @@ namespace Databaser_Labb_2.Views
 		public CreatePlaylist()
 		{
 			InitializeComponent();
+		}
+
+		private void SubmitPlaylistBtn_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void AddTrack_Click(object sender, RoutedEventArgs e)
+		{
+			Playlist playlist = new Playlist();
+			playlist.Name = PlaylistName.Text;
+
+			MainWindow.
 		}
 	}
 }

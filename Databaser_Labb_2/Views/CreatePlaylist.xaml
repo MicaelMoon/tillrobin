@@ -7,8 +7,54 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        
         <TextBox x:Name="PlaylistName"
-                 Grid.Row="5"
-                 Grid.Column="5"/>
+                 Grid.Row="2"
+                 Grid.Column="2"
+                 FontSize=" 13"
+                 Width="200"
+                 Height="20"/>
+        
+        <TextBlock Text="Name"
+                   Grid.Row="1"
+                   Grid.Column="2"
+                   Grid.ColumnSpan="1"
+                   FontSize="15"
+                   Margin="0, 0, 0, 0"/>
+
+        <Button x:Name="SubmitPlaylistBtn"
+                Content="Submit Name"
+                Grid.Row="3"
+                Grid.Column="2" Click="SubmitPlaylistBtn_Click"/>
+        
+        <Button x:Name="AddTrack"
+                Content="Add Track"
+                Grid.Row="4"
+                Grid.Column="2"
+                Grid.ColumnSpan="1"
+                FontSize="18"
+                Width="100"
+                Height="30"
+                Margin="0, 0, 0, 0" Click="AddTrack_Click"/>
+
+        <ComboBox x:Name="Yourplaylist"/>
     </Grid>
+    
 </UserControl>

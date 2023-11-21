@@ -27,6 +27,7 @@ namespace Databaser_Labb_2
 	public partial class MainWindow : Window
 	{
 		public TrackChosen trackChosen;
+		CreatePlaylist createPlaylist;
 
 		public Track currentTrack = null;
 
@@ -80,7 +81,7 @@ namespace Databaser_Labb_2
 			}
 		}
 
-		private void PlayListListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		public void PlayListListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			if (trackChosen != null)
 			{
@@ -108,7 +109,7 @@ namespace Databaser_Labb_2
 
 			if (trackChosen == null)
 			{
-				trackChosen = new TrackChosen(); // Fel. Clear
+				trackChosen = new TrackChosen();
 				this.MainGrid.Children.Add(trackChosen);
 			}
 			else
@@ -122,7 +123,11 @@ namespace Databaser_Labb_2
 
 		private void CreatePlaylistBtn_Click(object sender, RoutedEventArgs e)
 		{
-			Menu.CreatePlaylist();
+			createPlaylist = new CreatePlaylist();
+			this.MainGrid.Children.Add(createPlaylist);
+
+			Grid.SetRow(createPlaylist, 5);
+			Grid.SetColumn(createPlaylist, 5);
 
 			LoadData();
 		}
